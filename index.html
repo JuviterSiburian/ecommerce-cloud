@@ -1,413 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kick Vault - Luxury Vintage Shoes</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AX Guitar Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #1e3a8a;
+      --secondary: #3b82f6;
+      --bg: #f9fafb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --card-bg: #ffffff;
+      --border: #e5e7eb;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    :root {
-      --gold: #b08d57;
-      --dark-gold: #8a6d3b;
-      --light-gold: #d4b883;
-      --cream: #f6f5f2;
-      --dark-brown: #3c2a1b;
-      --light-brown: #7a6e63;
-    }
-
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #111111, #222222);
-      color: var(--cream);
-      line-height: 1.6;
-      padding: 0;
-      margin: 0;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .background-pattern {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(to right, rgba(0,0,0,0.3) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0,0,0,0.3) 1px, transparent 1px);
-      background-size: 30px 30px;
-      opacity: 0.2;
-      z-index: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
     }
 
     .header {
-      text-align: center;
-      margin: 20px 0 60px;
-      position: relative;
       padding: 40px 20px;
-      border-bottom: none;
-    }
-
-    .header:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 180px;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    }
-
-    .logo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .logo-emblem {
-      width: 80px;
-      height: 80px;
-      border: 2px solid var(--gold);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 15px;
-      position: relative;
-      background: rgba(176, 141, 87, 0.1);
-      box-shadow: 0 0 25px rgba(176, 141, 87, 0.5);
-    }
-
-    .logo-emblem:before {
-      content: 'KV';
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: 2rem;
-      color: var(--gold);
-      letter-spacing: -2px;
+      text-align: center;
+      background-color: var(--primary);
+      color: white;
     }
 
     .header h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 3.8rem;
-      color: var(--gold);
-      font-weight: bold;
-      letter-spacing: 4px;
-      margin: 0;
-      text-transform: uppercase;
-      background: linear-gradient(to right, var(--dark-gold), var(--gold), var(--light-gold));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 10px rgba(176, 141, 87, 0.3);
+      font-size: 2.8rem;
+      font-weight: 700;
     }
 
     .header p {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--light-gold);
+      font-size: 1rem;
+      color: #dbeafe;
       margin-top: 10px;
-      letter-spacing: 1.5px;
-      font-size: 1.1rem;
     }
 
-    .products-container {
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 40px;
-      margin-top: 30px;
-      padding: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 30px;
     }
 
-    .product {
-      background-color: rgba(20, 20, 20, 0.7);
-      border-radius: 15px;
+    .product-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-      border: 1px solid rgba(176, 141, 87, 0.2);
-      backdrop-filter: blur(5px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .product:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(176, 141, 87, 0.05), transparent);
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .product:hover {
-      transform: translateY(-15px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(176, 141, 87, 0.4);
-      border-color: var(--gold);
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     }
 
     .product-image {
-      height: 320px;
+      height: 220px;
       overflow: hidden;
-      background-color: #000;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
+      background: #f3f4f6;
     }
 
     .product-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.7s ease;
-      filter: brightness(0.95) contrast(1.1);
     }
 
-    .product:hover .product-image img {
-      transform: scale(1.12);
-    }
-
-    .product-image:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.2), transparent, rgba(0,0,0,0.3));
-      pointer-events: none;
-    }
-
-    .product-details {
-      padding: 25px 20px;
+    .product-info {
+      padding: 20px;
       text-align: center;
-      position: relative;
-      z-index: 2;
-      background: linear-gradient(to bottom, rgba(20,20,20,0.9), rgba(30,30,30,0.9));
     }
 
     .product-name {
-      font-family: 'Playfair Display', serif;
-      font-weight: bold;
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: #ffffff;
-      letter-spacing: 1px;
-      position: relative;
-      display: inline-block;
-    }
-
-    .product-name:after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 2px;
-      background: var(--gold);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
     }
 
     .product-price {
-      font-weight: 600;
-      color: var(--gold);
-      font-size: 1.3rem;
-      margin-top: 15px;
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-    }
-
-    .product-price:before {
-      content: '⬥';
       font-size: 1rem;
-      color: var(--light-gold);
+      color: var(--secondary);
+      font-weight: 600;
     }
 
     .footer {
-      margin-top: 80px;
       text-align: center;
+      padding: 20px;
       font-size: 0.9rem;
-      color: var(--light-brown);
-      border-top: 1px solid rgba(176, 141, 87, 0.3);
-      padding: 30px 0;
-      background: linear-gradient(to bottom, rgba(20,20,20,0), rgba(20,20,20,0,7));
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 60px;
     }
 
-    .footer p {
-      position: relative;
-      display: inline-block;
-      padding: 0 20px;
+    .loading {
+      text-align: center;
+      padding: 60px 0;
     }
 
-    .footer p:before, .footer p:after {
-      content: '◈';
-      color: var(--gold);
-      opacity: 0.7;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .footer p:before {
-      left: -10px;
-    }
-
-    .footer p:after {
-      right: -10px;
-    }
-
-    .glow-effect {
-      position: fixed;
-      width: 200px;
-      height: 200px;
+    .loading div {
+      width: 40px;
+      height: 40px;
+      border: 4px solid var(--border);
+      border-top-color: var(--secondary);
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(176, 141, 87, 0.2), transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      margin: 0 auto;
+      animation: spin 1s linear infinite;
     }
 
-    @media (max-width: 768px) {
-      .products-container {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 30px;
-      }
-      
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 640px) {
       .header h1 {
-        font-size: 2.8rem;
-      }
-      
-      .logo-emblem {
-        width: 60px;
-        height: 60px;
-      }
-      
-      .logo-emblem:before {
-        font-size: 1.6rem;
+        font-size: 2rem;
       }
     }
   </style>
 </head>
-
 <body>
-  <div class="background-pattern"></div>
-  <div class="glow-effect" id="glow"></div>
-  
+
+  <div class="header">
+    <h1>AX Guitar Shop</h1>
+    <p>Koleksi gitar pilihan terbaik untuk Anda</p>
+  </div>
+
   <div class="container">
-    <div class="header">
-      <div class="logo">
-        <div class="logo-emblem"></div>
-      </div>
-      <h1>SKena yihaa uhuyy</h1>
-      <p>tempat anak muda petantang</p>
-    </div>
+    <div id="produk-list" class="products-grid"></div>
+  </div>
 
-    <div id="produk-list" class="products-container"></div>
-
-    <div class="footer">
-      <p>© 2025 Kick Vault - Vintage Luxury Shoes</p>
-    </div>
+  <div class="footer">
+    © 2025 AX Guitar Shop. All rights reserved.
   </div>
 
   <script>
-    // Efek Glow untuk mouse
-    const glow = document.getElementById('glow');
-    
-    document.addEventListener('mousemove', (e) => {
-      glow.style.opacity = '1';
-      glow.style.left = e.clientX - 100 + 'px';
-      glow.style.top = e.clientY - 100 + 'px';
-    });
-    
-    document.addEventListener('mouseout', () => {
-      glow.style.opacity = '0';
-    });
-
-    // Animasi Loading untuk produk
     const productsList = document.getElementById('produk-list');
     productsList.innerHTML = `
-      <div style="grid-column: 1 / -1; text-align: center; padding: 50px 0;">
-        <div style="display: inline-block; width: 40px; height: 40px; border: 3px solid rgba(176, 141, 87, 0.3); border-radius: 50%; border-top-color: #b08d57; animation: spin 1s linear infinite;"></div>
-        <p style="margin-top: 20px; color: #b08d57; font-style: italic;">Memuat koleksi eksklusif...</p>
+      <div class="loading" style="grid-column: 1 / -1;">
+        <div></div>
+        <p style="margin-top: 15px; color: var(--secondary);">Memuat produk...</p>
       </div>
     `;
 
-    // Animasi Loading
-    document.head.insertAdjacentHTML('beforeend', `
-      <style>
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-      </style>
-    `);
-
-    // Fetch data produk
     fetch('/products')
       .then(response => response.json())
       .then(data => {
         productsList.innerHTML = '';
-        
-        // Animasi masuk untuk produk
-        data.forEach((product, index) => {
-          const productElement = document.createElement('div');
-          productElement.className = 'product';
-          productElement.style.opacity = '0';
-          productElement.style.transform = 'translateY(30px)';
-          productElement.style.transition = `all 0.6s ease ${index * 0.1}s`;
 
-          productElement.innerHTML = `
+        data.forEach(product => {
+          const card = document.createElement('div');
+          card.className = 'product-card';
+          card.innerHTML = `
             <div class="product-image">
-              <img src="${product.image_url}" alt="${product.name}">
+              <img src="${product.image_url}" alt="${product.name}" />
             </div>
-            <div class="product-details">
+            <div class="product-info">
               <div class="product-name">${product.name}</div>
               <div class="product-price">Rp ${Number(product.price).toLocaleString('id-ID')}</div>
             </div>
           `;
-          
-          productsList.appendChild(productElement);
-          
-          // Trigger fade in animation
-          setTimeout(() => {
-            productElement.style.opacity = '1';
-            productElement.style.transform = 'translateY(0)';
-          }, 10);
+          productsList.appendChild(card);
         });
       })
-      .catch(error => {
-        console.error('Error fetching products:', error);
+      .catch(err => {
+        console.error(err);
         productsList.innerHTML = `
-          <div style="grid-column: 1 / -1; text-align: center; padding: 50px 0;">
-            <div style="width: 80px; height: 80px; margin: 0 auto; border-radius: 50%; background-color: rgba(176, 141, 87, 0.1); display: flex; align-items: center; justify-content: center;">
-              <span style="font-size: 2rem; color: #b08d57;">!</span>
-            </div>
-            <p style="margin-top: 20px; color: #b08d57; font-weight: 300;">Gagal memuat produk. Silakan coba lagi nanti.</p>
-            <button onclick="location.reload()" style="margin-top: 20px; background: none; border: 1px solid #b08d57; color: #b08d57; padding: 8px 20px; border-radius: 20px; cursor: pointer; transition: all 0.3s ease;">Muat Ulang</button>
+          <div class="loading" style="grid-column: 1 / -1;">
+            <p style="color: var(--secondary);">Gagal memuat produk. Coba lagi nanti.</p>
           </div>
         `;
       });
